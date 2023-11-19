@@ -173,3 +173,15 @@ services:
     read_only: true
     hostname: user-simulator
     command: "-d 60 -r 200 -c 2 -h edge-router"
+  integration-test:
+    build:
+      context: ../../integration-test
+      dockerfile: Dockerfile
+    depends_on:
+      - front-end
+      - catalogue
+      - carts
+      - orders
+      - shipping
+      - user
+    command: npm test
